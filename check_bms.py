@@ -14,7 +14,7 @@ from pathlib import Path
 EVENT_CODE  = os.environ["BMS_EVENT_CODE"]   # ET00452034
 VENUE_CODE  = "CHNP"                          # PVR Palazzo Chennai
 CITY_CODE   = "CHEN"
-TARGET_DATE = "20260720"
+TARGET_DATE = "20260719"
 STATE_FILE  = Path("seen_shows.json")
 
 TWILIO_SID   = os.environ["TWILIO_SID"]
