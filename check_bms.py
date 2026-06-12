@@ -32,10 +32,16 @@ BMS_API = (
 )
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-IN,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Referer": "https://in.bookmyshow.com/",
+    "Origin": "https://in.bookmyshow.com",
     "x-region-code": CITY_CODE,
     "x-region-slug": "chennai",
     "x-bms-id": "1.3.0.1",
+    "Connection": "keep-alive",
 }
 
 
