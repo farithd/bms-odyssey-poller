@@ -30,16 +30,23 @@ MY_PHONE     = os.environ["MY_PHONE"]
 PVR_API = "https://api3.pvrcinemas.com/api/v1/booking/content/mshowtimes"
 
 HEADERS = {
-    "accept":           "application/json, text/plain, */*",
-    "accept-language":  "en-US,en;q=0.9",
-    "appversion":       "1.0",
-    "chain":            "PVR",
-    "city":             "Chennai",
-    "content-type":     "application/json",
-    "country":          "INDIA",
-    "origin":           "https://www.pvrcinemas.com",
-    "platform":         "WEBSITE",
-    "user-agent":       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "accept":              "application/json, text/plain, */*",
+    "accept-language":     "en-US,en;q=0.9",
+    "appversion":          "1.0",
+    "chain":               "PVR",
+    "city":                "Chennai",
+    "content-type":        "application/json",
+    "country":             "INDIA",
+    "origin":              "https://www.pvrcinemas.com",
+    "platform":            "WEBSITE",
+    "priority":            "u=1, i",
+    "sec-ch-ua":           '"Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"',
+    "sec-ch-ua-mobile":    "?0",
+    "sec-ch-ua-platform":  '"macOS"',
+    "sec-fetch-dest":      "empty",
+    "sec-fetch-mode":      "cors",
+    "sec-fetch-site":      "same-site",
+    "user-agent":          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
 }
 
 PAYLOAD = {
