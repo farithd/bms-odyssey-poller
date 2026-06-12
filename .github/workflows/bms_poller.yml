@@ -1,14 +1,16 @@
-name: BMS Odyssey IMAX Poller
+name: PVR Odyssey IMAX Poller
 
 on:
   schedule:
     - cron: "*/5 * * * *"   # every 5 minutes
-  workflow_dispatch:           # lets you trigger manually
+  workflow_dispatch:          # manual trigger from GitHub
 
 jobs:
   poll:
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repo
@@ -31,12 +33,11 @@ jobs:
 
       - name: Run poller
         env:
-          BMS_EVENT_CODE: ${{ secrets.BMS_EVENT_CODE }}
-          TWILIO_SID:     ${{ secrets.TWILIO_SID }}
-          TWILIO_TOKEN:   ${{ secrets.TWILIO_TOKEN }}
-          TWILIO_FROM:    ${{ secrets.TWILIO_FROM }}
-          MY_PHONE:       ${{ secrets.MY_PHONE }}
-        run: python check_bms.py
+          TWILIO_SID:   ${{ secrets.TWILIO_SID }}
+          TWILIO_TOKEN: ${{ secrets.TWILIO_TOKEN }}
+          TWILIO_FROM:  ${{ secrets.TWILIO_FROM }}
+          MY_PHONE:     ${{ secrets.MY_PHONE }}
+        run: python check_pvr.py
 
       - name: Save seen-shows cache
         if: always()
