@@ -118,9 +118,12 @@ def poll():
     )
 
     try:
-        resp = requests.post(
-            PVR_API, headers=HEADERS, data=json.dumps(PAYLOAD), timeout=15
-        )
+        resp = requests.post(PVR_API, headers=HEADERS, json=PAYLOAD, timeout=15)
+
+        print("Status:", resp.status_code)
+        print("Headers:", resp.headers)
+        print("Body:", resp.text[:1000])
+
         resp.raise_for_status()
         data = resp.json()
     except Exception as e:
