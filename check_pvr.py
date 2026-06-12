@@ -114,7 +114,7 @@ def poll():
     print(f"[{datetime.now(timezone.utc).isoformat()}] Polling PVR API for {TARGET_DATE}...")
 
     try:
-        resp = requests.post(PVR_API, headers=HEADERS, json=PAYLOAD, timeout=15)
+        resp = requests.post(PVR_API, headers=HEADERS, data=json.dumps(PAYLOAD), timeout=15)
         resp.raise_for_status()
         data = resp.json()
     except Exception as e:
