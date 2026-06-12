@@ -1,0 +1,46 @@
+name: BMS Odyssey IMAX Poller
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # every 5 minutes
+  workflow_dispatch:           # lets you trigger manually
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Restore seen-shows cache
+        uses: actions/cache@v4
+        with:
+          path: seen_shows.json
+          key: seen-shows-${{ runner.os }}
+          restore-keys: seen-shows-
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run poller
+        env:
+          BMS_EVENT_CODE: ${{ secrets.BMS_EVENT_CODE }}
+          TWILIO_SID:     ${{ secrets.TWILIO_SID }}
+          TWILIO_TOKEN:   ${{ secrets.TWILIO_TOKEN }}
+          TWILIO_FROM:    ${{ secrets.TWILIO_FROM }}
+          MY_PHONE:       ${{ secrets.MY_PHONE }}
+        run: python check_bms.py
+
+      - name: Save seen-shows cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: seen_shows.json
+          key: seen-shows-${{ runner.os }}-${{ github.run_id }}
